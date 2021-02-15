@@ -1,0 +1,39 @@
+type LoginResult {
+  loginResult: Boolean!
+
+  userData: PracUser
+}
+
+type Query {
+  getAllUsers: [PracUser!]!
+  getUserDetail(id: String!): PracUser!
+  getUserForId(id: String!, password: String!): PracUser!
+  getUserByUserId(userId: String!): Boolean!
+  getUserForLogin(userId: String!, userPassword: String!): LoginResult!
+}
+
+type Mutation {
+  createUser(
+    userId: String!
+    userPassword: String!
+    name: String!
+    mobile: String!
+    email: String!
+    zoneCode: String!
+    address: String!
+    detailAddress: String!
+  ): Boolean!
+
+  updateUser(
+    id: String!
+    userId: String!
+    # userPassword: String!
+    name: String!
+    mobile: String!
+    email: String!
+    zoneCode: String!
+    address: String!
+    detailAddress: String!
+  ): Boolean!
+  deleteUser(id: String!): Boolean!
+}

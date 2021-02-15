@@ -1,0 +1,12 @@
+type PracUser {
+  _id: ID!
+  userId: String!
+  userPassword: String!
+  name: String!
+  mobile: String!
+  email: String!
+  zoneCode: String!
+  address: String!
+  detailAddress: String!
+  secretCode: String!
+}
