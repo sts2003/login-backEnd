@@ -7,6 +7,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import schema from "../graphql/schemas";
 import connect from "../db/mongo";
+// import globalRouter from "./router/globalRouter";
 
 const app = express();
 
@@ -14,13 +15,28 @@ app.set(`PORT`, process.env.PORT);
 app.use(morgan(`dev`));
 connect();
 
+const loggingMiddleware = (req, res, next) => {
+  // console.log(`ip: `, req);
+  next();
+};
+
+const root = {
+  ip: (args, request) => {
+    return request.ip;
+  },
+};
+
+// app.use("/rest", globalRouter);
+app.use(loggingMiddleware);
 app.use(
   "/graphql",
   cors(),
   bodyParser.json(),
+
   graphqlHTTP({
     schema,
     graphiql: true,
+    rootValue: root,
   })
 );
 

@@ -1,7 +1,12 @@
 type LoginResult {
   loginResult: Boolean!
+  userData: String!
+}
 
-  userData: PracUser
+type UserCookie {
+  _id: String!
+  userId: String!
+  userPassword: String!
 }
 
 type Query {
@@ -9,10 +14,11 @@ type Query {
   getUserDetail(id: String!): PracUser!
   getUserForId(id: String!, password: String!): PracUser!
   getUserByUserId(userId: String!): Boolean!
-  getUserForLogin(userId: String!, userPassword: String!): LoginResult!
+  getCookie(cookieToken: String!): UserCookie!
 }
 
 type Mutation {
+  getUserForLogin(userId: String!, userPassword: String!): LoginResult!
   createUser(
     userId: String!
     userPassword: String!
